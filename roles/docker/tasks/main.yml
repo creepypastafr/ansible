@@ -1,0 +1,44 @@
+- name: Installation prérequis
+  become: yes
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+
+- name: Ajouter la clé pour le dépot docker pour apt
+  become: yes
+  apt_key:
+    url: "https://download.docker.com/linux/debian/gpg"
+    state: present
+
+- name: Ajouter le dépot docker pour apt
+  become: yes
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/debian bullseye stable
+    state: present
+
+- name: Installation docker
+  become: yes
+  apt:
+    name:
+      - docker-ce
+    state : present
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: demarrer le service docker
+  become: yes
+  service:
+    name: docker
+    state: started
+    enabled: true
+
+- name: configuration docker
+  become: yes
+  user:
+    name: infra1
+    groups: docker
+    append: yes

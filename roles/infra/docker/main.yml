@@ -1,0 +1,22 @@
+- name: Installation docker
+  become: yes
+  apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+    state : present
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: demarrer le service docker
+  become: yes
+  service:
+    name: docker
+    state: started
+    enabled: true
+
+- name: configuration docker
+  become: yes
+  commande: ["/bin/sh"]
+  args: ["groupadd docker", "usermod -aG docker infra1", "newgrp docker", "docker run hello-world"]

@@ -4,9 +4,9 @@
   roles:
     - role: common
 
-- name: "Ce playbook install les serveurs infra"
-  hosts: infra
-  roles:
-    - role: infra
+#- name: "Ce playbook install les serveurs infra"
+#  hosts: infra
+#  roles:
+#    - role: infra
 
 

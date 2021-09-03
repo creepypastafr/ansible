@@ -1,0 +1,12 @@
+---
+- name: "Ce playbook lance les install habituel"
+  hosts: all
+  roles:
+    - role: common
+
+- name: "Ce playbook install les serveurs infra"
+  hosts: infra
+  roles:
+    - role: infra
+
+

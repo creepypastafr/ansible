@@ -1,0 +1,21 @@
+- name: Installation utilitaires
+  become: yes
+  apt:
+    name:
+      - htop
+      - screen
+      - open-vm-tools
+      - dnsutils
+      - curl
+      - tree
+      - net-tools
+      - iptables
+      - iptables-persistent
+    state : present
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Mise à jour système
+  become: yes
+  apt:
+    upgrade: yes
